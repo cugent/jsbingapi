@@ -6,7 +6,7 @@
 
 <script type="text/javascript">
 	var total;
-	var results = '';
+	var whitespace = '';
 	 //Start function only if doc is loaded
 	 $(document).ready(function () { 
 	 //Listen for search button and run
@@ -19,6 +19,7 @@
 		e.preventDefault();
         e.stopPropagation();
 		
+		var results = '';
 		//Parameters for bing api
         var params = {
 			"q": " ",
@@ -26,6 +27,7 @@
             "offset": "0",
             "mkt": "en-us",
         };
+		$('#resultList').empty();
 		//Change so user can input what to search
 		params.q = document.getElementById("searchValue").value;
 		
@@ -47,7 +49,7 @@
 		{
 		   results += "<p><a href='" + data.webPages.value[i].url + "'>" + data.webPages.value[i].name + "</a>: " + data.webPages.value[i].snippet + "</p>";
 		}
-		$('#resultList').replaceWith(results);
+		$('#resultList').html(results);
         })
         .fail(function() {
             alert("error");
